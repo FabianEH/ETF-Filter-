@@ -1,5 +1,4 @@
 import numpy as np
-
 import pandas as pd
 from statsmodels.tsa.stattools import coint
 import matplotlib.pyplot as plt
@@ -240,6 +239,13 @@ class PairsFilter:
                 unique_tickers.append(pair[1])
         
         self.data_filtration = self.data_filtration[unique_tickers]
+
+    def get_all_filters(self, tol_varinfo = 1.0, bins_varinfo = 30, tol_Temb = 80, tol_corr=0.8, tol_coint=0.1):
+        self.correlationTest(tol = tol_corr)
+        self.variationalInformationTest(tol = tol_varinfo, bins = bins_varinfo)
+        self.TopologicalEmbedding(tol=tol_Temb)
+        self.cointegration(tol=tol_coint)
+
         
     
     def plot_correlation(self, method = 'pearson', *args):
