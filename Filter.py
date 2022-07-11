@@ -39,7 +39,7 @@ class ETF_Filter:
         
         topo = Tembedding(self.df)
         
-        for pair in self.pairs:
+        for pair in self.pairs.copy():
             resultado = topo.hausdorff(pair[0], pair[1])
             if resultado > tol:
                 self.pairs.remove(pair)
@@ -50,7 +50,7 @@ class ETF_Filter:
     def correlationTest(self, tol = 0.9):
          
 
-        for pair in self.pairs:
+        for pair in self.pairs.copy():
                         
             resultado = np.corrcoef(self.etf_filtration[pair[0]],self.ticker_filtration[pair[1]])[0,1]
                 
@@ -65,7 +65,7 @@ class ETF_Filter:
 
     def cointegration(self, tol=0.1):
 
-        for pair in self.pairs:
+        for pair in self.pairs.copy():
 
                 resultado = coint(self.etf_filtration[pair[0]],self.ticker_filtration[pair[1]])[1]
 
@@ -78,7 +78,7 @@ class ETF_Filter:
     
     def distance_correlationTest(self, tol=0.3):
         
-        for pair in self.pairs:
+        for pair in self.pairs.copy():
             
             resultado = correlation_distance(self.etf_filtration[pair[0]],self.ticker_filtration[pair[1]])
             
@@ -92,7 +92,7 @@ class ETF_Filter:
 
     def variationalInformationTest(self, bins = 50, tol = 3.0):
     
-        for pair in self.pairs:
+        for pair in self.pairs.copy():
 
             resultado = varInfo(self.etf_filtration[pair[0]],self.ticker_filtration[pair[1]], bins = bins)
 
@@ -156,7 +156,7 @@ class PairsFilter:
         
         topo = Tembedding(self.data_filtration)
         
-        for pair in self.pairs:
+        for pair in self.pairs.copy():
             resultado = topo.hausdorff(pair[0], pair[1])
             if resultado > tol:
                 self.pairs.remove(pair)
@@ -167,7 +167,7 @@ class PairsFilter:
     def correlationTest(self, tol = 0.9):
          
 
-        for pair in self.pairs:
+        for pair in self.pairs.copy():
 
                 resultado = np.corrcoef(self.data_filtration[pair[0]],self.data_filtration[pair[1]])[0,1]
                 if resultado < tol:
@@ -180,7 +180,7 @@ class PairsFilter:
 
     def cointegration(self, tol=0.1):
 
-        for pair in self.pairs:
+        for pair in self.pairs.copy():
 
                 resultado = coint(self.data_filtration[pair[0]], self.data_filtration[pair[1]])[1]
 
@@ -193,7 +193,7 @@ class PairsFilter:
     
     def distance_correlationTest(self, tol=0.3):
         
-        for pair in self.pairs:
+        for pair in self.pairs.copy():
             
             resultado = correlation_distance(self.data_filtration[pair[0]], self.data_filtration[pair[1]])
             
@@ -207,7 +207,7 @@ class PairsFilter:
 
     def variationalInformationTest(self, bins = 50, tol = 3.0):
     
-        for pair in self.pairs:
+        for pair in self.pairs.copy():
 
             resultado = varInfo(self.data_filtration[pair[0]],self.data_filtration[pair[1]], bins = bins)
 
