@@ -29,18 +29,14 @@ class Tembedding:
         self.tseries = self.tseries.dropna()
         self.tseries = self.tseries.reset_index(drop=True)
     def hausdorff(self, ticker_1, ticker_2, lagtime = 1):
-        self.u = []
-        self.v = []
-        self.hausdorff_XY = []
-        self.hausdorff_YX = []
-        
         self.u = self.tseries[ticker_1]
         self.v = self.tseries[ticker_2]
         self.u = np.transpose( np.array([  self.u[range(0, len(self.u) - lagtime, 1)], self.u[range(lagtime, len(self.u), 1)] ] ) )
         self.v = np.transpose( np.array([  self.v[range(0, len(self.v) - lagtime, 1)], self.v[range(lagtime, len(self.v), 1)] ] ) )
         self.hausdorff_XY = directed_hausdorff(self.u, self.v)[0]
         self.hausdorff_YX = directed_hausdorff(self.v, self.u)[0]
-        return max(self.hausdorff_XY, self.hausdorff_YX)    
+        self.output = max(self.hausdorff_XY, self.hausdorff_YX)
+        return max(self.hausdorff_XY, self.hausdorff_YX)     
     def graph(self, t_embedding):
         self.Xticker = []
         self.Yticker = []
