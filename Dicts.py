@@ -38,16 +38,16 @@ class Dicts:
         # Getting the ETF dict
         symbols = [symbol for symbol in pd.DataFrame(self.wb_obj["ETF"].values)[1] if symbol not in [None, 'Symbol']]
         # Creating the dict
-        return {"ETF": symbols}
+        return symbols
 
     def forex_dict(self):
         # Getting the FOREX dict
         symbols = [symbol for symbol in pd.DataFrame(self.wb_obj["FOREX"].values)[1] if symbol not in [None, 'Symbol']]
         # Creating the dict
-        return {"FOREX": symbols}
+        return symbols
 
     def crypto_dict(self):
         # Getting the CRYPTO dict
         symbols = [symbol for symbol in pd.DataFrame(self.wb_obj["CRYPTO"].values)[1] if symbol not in [None, 'Symbol']]
         # Creating the dict
-        return {"CRYPTO": symbols}
+        return  symbols
