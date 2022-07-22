@@ -281,7 +281,7 @@ class PairsFilter2:
                 self.tickers = diccionarioStocks[stock_type]
 
         else: 
-            if number < len(diccionarioStocks[stock_type]):
+            if number < len(diccionarioStocks[stock_type][sector]):
                 self.tickers = (np.random.permutation(diccionarioStocks[stock_type][sector])[:number]).tolist()
             else:
                 print('El numero de tickers que escogiste es mayor al que tenemos, así que te muestro todos')
